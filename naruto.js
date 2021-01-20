@@ -9,14 +9,37 @@ class Naruto {
         this.game = game;
         this.animations = [];
 
-        this.animations = new Animator(this.spritesheet, 25, 44, 32, 64, 0, 0, 0, false, false);
+        this.animations.push(new Animator(this.spritesheet, 30, 291, 38, 69, 6, 0.2, 82, false, true));
+
+        this.animations.push(new Animator(this.spritesheet, 748, 291, 38, 69, 1, 0.2, 0, false, true));
+
     }
 
     draw(ctx) {
-        this.animations[0].drawFrame(this.game.clockTick, ctx, this.x, this.y, 1);
+        if (this.facing == 0) {
+            this.animations[0].drawFrame(this.game.clockTick, ctx, this.x, this.y, 2);
+        } else {
+            this.animations[1].drawFrame(this.game.clockTick, ctx, this.x, this.y, 2);
+        }
     }
 
     update() {
+        if (this.game.left) {
+            this.facing = 1;
+            this.x -= 10;
+        }
 
+        if (this.game.right) {
+            this.facing = 0;
+            this.x += 10;
+        }
+
+        if (this.game.up) {
+            this.y -= 10;
+        }
+
+        if (this.game.down) {
+            this.y += 10;
+        }
     }
 }

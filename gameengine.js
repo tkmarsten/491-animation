@@ -5,12 +5,10 @@ class GameEngine {
         this.surfaceWidth = null;
         this.surfaceHeight = null;
 
-        this.left = null;
-        this.right = null;
-        this.up = null;
-        this.down = null;
-        this.A = null;
-        this.B = null;
+        this.left = false;
+        this.right = false;
+        this.up = false;
+        this.down = false;
     };
 
     init(ctx) { // called after page has loaded
@@ -36,26 +34,19 @@ class GameEngine {
             switch (e.code) {
                 case "ArrowLeft":
                 case "KeyA":
-                    this.left = true;
+                    that.left = true;
                     break;
                 case "ArrowRight":
                 case "KeyD":
-                    this.right = true;
+                    that.right = true;
                     break;
                 case "ArrowUp":
                 case "KeyW":
-                    this.up = true;
+                    that.up = true;
                     break;
                 case "ArrowDown":
                 case "KeyS":
-                    this.up = true;
-                    break;
-                case "AltLeft":
-                case "AltRight":
-                    this.B = true;
-                    break;
-                case "Space":
-                    this.A = true;
+                    that.down = true;
                     break;
             }
         }, false);
@@ -64,26 +55,19 @@ class GameEngine {
             switch (e.code) {
                 case "ArrowLeft":
                 case "KeyA":
-                    this.left = false;
+                    that.left = false;
                     break;
                 case "ArrowRight":
                 case "KeyD":
-                    this.right = false;
+                    that.right = false;
                     break;
                 case "ArrowUp":
                 case "KeyW":
-                    this.up = false;
+                    that.up = false;
                     break;
                 case "ArrowDown":
                 case "KeyS":
-                    this.up = false;
-                    break;
-                case "AltLeft":
-                case "AltRight":
-                    this.B = false;
-                    break;
-                case "Space":
-                    this.A = false;
+                    that.down = false;
                     break;
             }
         }, false);
@@ -95,7 +79,6 @@ class GameEngine {
 
     draw() {
         this.ctx.clearRect(0, 0, this.ctx.canvas.width, this.ctx.canvas.height);
-        this.ctx.save();
         for (var i = 0; i < this.entities.length; i++) {
             this.entities[i].draw(this.ctx);
         }
