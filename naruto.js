@@ -9,12 +9,10 @@ class Naruto {
         this.game = game;
         this.animations = [];
 
-        this.animations.push(new Animator(this.spritesheet, 25, 44, 32, 64, 0, 0, 0, false, false));
+        this.animations = new Animator(this.spritesheet, 25, 44, 32, 64, 0, 0, 0, false, false);
     }
 
     draw(ctx) {
-        ctx.drawImage(this.spritesheet, 25, 44, 32, 64, 0, 0, 0, false, false);
-
         this.animations[0].drawFrame(this.game.clockTick, ctx, this.x, this.y, 1);
     }
 
